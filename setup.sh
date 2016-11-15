@@ -5,7 +5,6 @@
 #   sleep 5 
 # done 
 
-
 # --- NGINX
 
 cd /tmp
@@ -76,6 +75,9 @@ cd /var
 git clone https://github.com/jcorioland/CloudArchi-Samples.git
 cd /var/CloudArchi-Samples
 git checkout parisoss
+
+# bug .NET Core - https://github.com/dotnet/cli/issues/2385
+export HOME=/root
 
 cd /var/CloudArchi-Samples/src/ProductsApi
 dotnet restore
