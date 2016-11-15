@@ -22,35 +22,15 @@ server {
 	listen 80;
 	location / {
 		proxy_pass http://localhost:5004/;
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection keep-alive;
-		proxy_set_header Host $host;
-		proxy_cache_bypass $http_upgrade;
 	}
 	location /api/products {
 		proxy_pass http://localhost:5001/api/products;
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection keep-alive;
-		proxy_set_header Host $host;
-		proxy_cache_bypass $http_upgrade;
 	}
 	location /api/ratings {
 		proxy_pass http://localhost:5002/api/ratings;
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection keep-alive;
-		proxy_set_header Host $host;
-		proxy_cache_bypass $http_upgrade;
 	}
 	location /api/recommandations {
 		proxy_pass http://localhost:5003/api/recommandations;
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection keep-alive;
-		proxy_set_header Host $host;
-		proxy_cache_bypass $http_upgrade;
 	}
 }
 END
