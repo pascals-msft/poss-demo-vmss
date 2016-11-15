@@ -1,12 +1,46 @@
 # poss-demo-vmss
 
-### Autoscale a VM Scale Set running a .NET Core app ###
+### Azure VM Scale Set running a .NET Core app ###
 
-Simple self-contained .NET Core autoscale & load balancing example. VM Scale Set scales up when avg CPU across all VMs > 60%, scales down when avg CPU < 30%.
+This sample shows how to automate the deployment of a .NET Core application on an Azure Virtual Machine Scale Set with load balancing. Autoscale can be added to the template if needed. The `setup.sh` script does all the setup work on the VM instances during their provisionning.
 
-- Deploy the VM Scale Set with an instance count of 1 
-- After it is deployed look at the resource group public IP address resource (in portal or resources explorer). Get the IP or domain name.
-- Browse to the website (port 80), which shows the current backend VM name.
+How to use :
+
+- Be sure to have Azure Xplat-CLI on your system: https://github.com/Azure/azure-xplat-cli.
+- Get the parameters file: azuredeploy.parameters.json.
+- Edit the parameters file. For example:
+```
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ubuntuOSVersion": { 
+      "value": "16.04.0-LTS"
+    },
+    "vmssName": {
+      "value": "demo-vmss"
+    },
+    "instanceCount": {
+      "value": 2
+    },
+    "adminUsername": {
+      "value": "ubuntu"
+    },
+    "adminPassword": {
+      "value": "My.V3ry.S3cur3.P4ssw0rd"
+    }
+  }
+}
+```
+- Initiate the deployment with the `azure group create` command. For example:
+```
+azure group create --name RG_demo-vmss --location westeurope --template-uri https://raw.githubusercontent.com/pascals-msft/poss-demo-vmss/master/azuredeploy.json --parameters-file azuredeploy.parameters.json
+
+```
+- Watch the deployment on the Azure portal (https://portal.azure.com) by watching the new resource group.
+- Once the deployment is done, get the public IP address or DNS name and open it in a browser.
+
+You can also click on this button and use the portal to enter the parameters and deploy the demo:
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fpascals-msft%2Fposs-demo-vmss%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
