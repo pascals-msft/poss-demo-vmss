@@ -51,3 +51,10 @@ You can add or remove instances in the VM Scale Set with the `azure vmss scale` 
 azure vmss scale --resource-group RG_demo-vmss --name demo-vmss --new-capacity 4
 
 ```
+To remove the whole demo from your Azure subscription and save money, simply remove the resource group:
+```
+azure group delete RG_demo-vmss
+
+```
+
+The sample application can be found here: https://github.com/jcorioland/CloudArchi-Samples/tree/parisoss
