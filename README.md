@@ -32,7 +32,7 @@ How to use :
   }
 }
 ```
-- Initiate the deployment with the `azure group create` command. For example:
+- Initiate the deployment with the `azure group create` command. For example, to deploy the sample in a new resource group named `RG_demo-vmss` in the West Europe region:
 ```
 azure group create --name RG_demo-vmss --location westeurope --template-uri https://raw.githubusercontent.com/pascals-msft/poss-demo-vmss/master/azuredeploy.json --parameters-file azuredeploy.parameters.json
 
@@ -46,3 +46,8 @@ You can also click on this button and use the portal to enter the parameters and
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
+You can add or remove instances in the VM Scale Set with the `azure vmss scale` command. For example:
+```
+azure vmss scale --resource-group RG_demo-vmss --name demo-vmss --new-capacity 4
+
+```
